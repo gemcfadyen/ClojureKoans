@@ -10,14 +10,38 @@
   (loop [n   n
          acc true]
     (if (= n 0)
-      __
+      acc
       (recur (dec n) (not acc)))))
 
+
+(defn- reversy [reversed-list coll]
+  (if (= 0 (count coll))
+    reversed-list
+    (reversy (cons (first coll) reversed-list) (rest coll))
+    )
+  )
+
 (defn recursive-reverse [coll]
-  __)
+  (reversy '() coll)
+  )
+
+(defn- factorial-tail-recur [running-total n]
+  (loop [total 1 number n]
+    (if (= 1 n)
+      total
+      (recur (* n running-total)  (dec n))))
+  )
 
 (defn factorial [n]
-  __)
+  (loop [total 1 number n]
+    (if (= 1 number)
+      total
+      (recur (* number total) (dec number))))
+  ;; (if (= 1 n)
+  ;;   1
+  ;;   (* n (factorial (- n 1))
+  ;;   ))
+  )
 
 (meditations
   "Recursion ends with a base case"
